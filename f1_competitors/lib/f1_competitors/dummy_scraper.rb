@@ -43,6 +43,7 @@ class Dummy_scraper # This returns dummy data for testing the CLI without actual
   def self.scrape.driver_details
     @@faked_driver_details
   end
+  
   # def driver_details(dummy) = 
   #   team: "Alfa Romeo",
   #   country: "Finland",
