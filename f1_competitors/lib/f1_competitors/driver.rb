@@ -1,5 +1,5 @@
 class Driver # This returns dummy data for testing the CLI without actually scraping anything
-attr_accessor :name, :number
+attr_accessor :name, :number, :profile
 
 @@all = []
   def initialize(name)
@@ -13,8 +13,8 @@ attr_accessor :name, :number
     @@all
   end # of all
 
-  def self.find_by_name(driver_name)
-    @@all.find{ |driver| driver.name == driver_name}
+  def self.find_by_number(number)
+    @@all.find{ |driver| driver.number == number}
   end
 
 end # of class

@@ -44,10 +44,10 @@ class Dummy_scraper # This returns dummy data for testing the CLI without actual
       
   end # of scrape_index
   
-  def self.scrape_driver_details(driver)
-    
-    @@faked_driver_details
-  end # of driver details
+  
+  def self.scrape_driver_profile(driver)
+    driver.profile[:data] = @@faked_driver_details
+  end # of scrape_driver_profile
 
 
 end # of class

@@ -26,7 +26,7 @@ class CLI
     puts "Please enter a number between 1-#{Driver.all.length}:"
     input = gets.chomp.to_i
     if check_driver_input(input)
-      get_driver_details(input)
+      get_driver_profile(input)
     else
       puts "Invalid Selection"
       get_driver_input
@@ -38,12 +38,20 @@ class CLI
       true
     else
       false
-    end
-  end
+    end #of conditional
+  end #add_driver_input
     
-   def self.get_driver_details(input)
-    puts "SCRAIPING.."
-    
-   end
+   def self.get_driver_profile(input)
+     selected_driver = Driver.find_by_number(input)
+    puts "Loading profile for #{selected_driver.name}..."
+    if selected_driver.profile == {}
+      puts "empty profile now scraping"
+      Dummy_scraper.scrape_driver_profile(selected_driver)
+
+    end #of conditional
+    puts selected_driver.profile
+  
+   end #of get_driver_profile
+   
 end # of class
 
