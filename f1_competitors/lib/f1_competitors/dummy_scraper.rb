@@ -36,25 +36,18 @@ class Dummy_scraper # This returns dummy data for testing the CLI without actual
     "Espoo, Finland"
   ]
 
-  def self.scrape_index
-    @@faked_drivers
+  def self.scrape_driver_list
+   
+      @@faked_drivers.each { |driver|
+      Driver.new(driver)
+      }
+      
   end # of scrape_index
   
-  def self.scrape.driver_details
+  def self.scrape_driver_details(driver)
+    
     @@faked_driver_details
-  end
-  
-  # def driver_details(dummy) = 
-  #   team: "Alfa Romeo",
-  #   country: "Finland",
-  #   codiums: "103",
-  #   points:	"1847",
-  #   grands_prix_entered: "306",
-  #   world_championships:"1",
-  #   highest_race_finish:"1 (x21)",
-  #   highest_grid_position: "1",
-  #   date_of_birth: "17/10/1979",
-  #   place_of_birth:	"Espoo, Finland"
-  # }
+  end # of driver details
+
 
 end # of class

@@ -8,7 +8,6 @@ Gem::Specification.new do |spec|
   spec.version       = F1Competitors::VERSION
   spec.authors       = ["'Lukie Kang'"]
   spec.email         = ["'lukiek+f@gmail.com'"]
-
   spec.summary       = "Shows Formula One competitors"
   spec.description   = "A command line interface that scrapes from the F1 website in order to be able to show drivers and details to the user "
   spec.homepage      = "https://github.com/neosaurrrus/f1_competitors"
@@ -17,9 +16,11 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "http://mygemserver.com"
 
     spec.metadata["homepage_uri"] = spec.homepage
+    spec.metadata["source_code_uri"] = "https://github.com/neosaurrrus/f1_competitors"
+    spec.metadata["changelog_uri"] = "https://github.com/neosaurrrus/f1_competitors"
     spec.metadata["source_code_uri"] = "https://github.com/neosaurrrus/f1_competitors"
     spec.metadata["changelog_uri"] = "https://github.com/neosaurrrus/f1_competitors"
   else
@@ -40,4 +41,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry"
   spec.add_dependency "nokogiri"
+
 end
