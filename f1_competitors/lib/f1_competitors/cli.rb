@@ -1,9 +1,10 @@
 class CLI
   
+
   def self.welcome
     puts "Welcome to F1 Competitors"
     puts "-------------------------"
-    puts "This is a gem that lets you check out the people competing for the Formula One wolrd championship"
+    puts "This is a gem that lets you check out the people competing for the Formula One world championship"
     puts ""
     get_driver_list
   end # of welcome
@@ -11,10 +12,10 @@ class CLI
    
    def self.get_driver_list
       if Driver.all.length == 0
-         Dummy_scraper.scrape_driver_list
+         Scraper.scrape_driver_list
       end
     puts "Here is a list of drivers:"
-     Driver.all.each{ |driver| 
+     Driver.all.each { |driver| 
       puts "#{driver.number}. #{driver.name}"
     }
     get_driver_input
@@ -39,19 +40,32 @@ class CLI
     else
       false
     end #of conditional
-  end #add_driver_input
+  end #of check_driver_input
     
    def self.get_driver_profile(input)
      selected_driver = Driver.find_by_number(input)
+     binding.pry
     puts "Loading profile for #{selected_driver.name}..."
     if selected_driver.profile == {}
       puts "empty profile now scraping"
-      Dummy_scraper.scrape_driver_profile(selected_driver)
-
+      Scraper.scrape_driver_profile(selected_driver)
     end #of conditional
+    
     puts selected_driver.profile
   
-   end #of get_driver_profile
+ end #of get_driver_profile
    
+    
+
+  
+   
+
+
+   def driver_list
+    puts "Here is a list of drivers:"
+    puts Driver.all
+    
+   end
+
 end # of class
 
