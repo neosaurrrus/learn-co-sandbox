@@ -1,38 +1,33 @@
 class Scraper # This returns dummy data for testing the CLI without actually scraping anything
 
-def initialize(url)
-  @url = url
-  @page = Nokogiri::HTML(open(@url))
+def initialize(url, driver  = nil)
+  @url = "https://www.formula1.com"
+  @driver_url = "https://www.formula1.com/en/drivers/"
+  @driver = driver
+  
  end
 
 def get_driver_list
-   @driver_results = @page.css(".nav-list-drivers")
-   @driver_results.each { |driver|
-   
+   @page = Nokogiri::HTML(open(@url))
+  @page.css(".driver").each { |driver|
+     Driver.new(driver.text.split(" ").join(" "))
+  }
 end
   
 
-
   
-  
-
-
-  def scrape_driver_list
-   
-      @@faked_drivers.each { |driver|
+  def get_driver_profile
+   build_url
+   @page = Nokogiri::HTML(open(@url))
+   @driver_results = @page.css(".nav-list-drivers")
+   @driver_results.each { |driver|
       Driver.new(driver)
-      }
-      
-  end # of scrape_driver_list
-  
-  
-  def scrape_driver_profile(driver)
-    @@faked_driver_details.each 
-    
+  }
   end # of scrape_driver_profile
 
-  
-  
+  def build_url
+    puts "#{@url}
+
 
 
 end # of class

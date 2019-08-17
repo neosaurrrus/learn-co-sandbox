@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 require_relative "../lib/environment"
 
-Scraper.new("https://www.formula1.com")
-
-#CLI.welcome
+CLI.welcome
 
 
 

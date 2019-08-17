@@ -11,8 +11,9 @@ class CLI
   
    
    def self.get_driver_list
+       
       if Driver.all.length == 0
-         Scraper.scrape_driver_list
+         Scraper.new("https://www.formula1.com").get_driver_list
       end
     puts "Here is a list of drivers:"
      Driver.all.each { |driver| 
@@ -48,7 +49,7 @@ class CLI
     puts "Loading profile for #{selected_driver.name}..."
     if selected_driver.profile == {}
       puts "empty profile now scraping"
-      Scraper.scrape_driver_profile(selected_driver)
+      Scraper.get_driver_profile(selected_driver)
     end #of conditional
     
     puts selected_driver.profile
