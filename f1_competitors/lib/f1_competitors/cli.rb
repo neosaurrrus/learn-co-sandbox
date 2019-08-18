@@ -49,7 +49,9 @@ class CLI
     if selected_driver.profile == {}
       selected_driver.profile = Scraper.new(selected_driver.name).get_driver_profile
     end #of conditional
-    puts selected_driver.profile
+    selected_driver.profile.each{ |key, value|
+      puts "#{key}: #{value}"
+    }
     user_post_profile_input
   end #of get_driver_profile
    
@@ -67,9 +69,7 @@ class CLI
     end # of user_post_profile_input
 
   
-   
-
-
+  
    def driver_list
     puts "Here is a list of drivers:"
     puts Driver.all
