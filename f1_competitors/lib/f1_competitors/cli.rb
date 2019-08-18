@@ -45,11 +45,10 @@ class CLI
     
    def self.get_driver_profile(input)
      selected_driver = Driver.find_by_number(input)
-     binding.pry
     puts "Loading profile for #{selected_driver.name}..."
     if selected_driver.profile == {}
-      puts "empty profile now scraping"
-      Scraper.get_driver_profile(selected_driver)
+      puts "Empty profile now scraping"
+      Scraper.new(selected_driver.name).get_driver_profile
     end #of conditional
     
     puts selected_driver.profile
