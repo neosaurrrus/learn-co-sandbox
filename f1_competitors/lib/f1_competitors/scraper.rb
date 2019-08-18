@@ -25,15 +25,25 @@ end
   
 
   def get_driver_profile
-    puts driver_profile_url
-  end
+     profile = {}
+     profile_page = Nokogiri::HTML(open("https://www.formula1.com/en/drivers/lewis-hamilton.html"))
+     profile_results = profile_page.css(".stat-list")
+     profile_keys = profile_results.css(".stat-key").map { | profile_key | profile_key.text.strip }
+     profile_values = profile_results.css(".stat-value").map { | profile_value | profile_value.text.strip }
+     
+     profile_keys.each_with_index { | key, index | 
+      profile[key] = profile_values[index]
+     }
+     profile
+  end # of get_driver_profile
   
 
   def driver_profile_url
     split_driver_name = @driver.downcase.split(" ")
     driver_url = split_driver_name.join("-")
-    "#{@driver_url}#{driver_url}"
-  end
+    puts "#{@driver_url}#{driver_url}"
+    return "#{@driver_url}#{driver_url}"
+  end # of driver_profile_url
 
 # https://www.formula1.com/en/drivers/lewis-hamilton.html
 

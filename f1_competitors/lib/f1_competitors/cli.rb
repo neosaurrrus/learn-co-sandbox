@@ -19,11 +19,11 @@ class CLI
      Driver.all.each { |driver| 
       puts "#{driver.number}. #{driver.name}"
     }
-    get_driver_input
+    user_driver_input
    end
    
    
-   def self.get_driver_input
+   def self.user_driver_input
     puts ""
     puts "Please enter a number between 1-#{Driver.all.length}:"
     input = gets.chomp.to_i
@@ -31,7 +31,7 @@ class CLI
       get_driver_profile(input)
     else
       puts "Invalid Selection"
-      get_driver_input
+      user_driver_input
     end
   end
    
@@ -47,15 +47,24 @@ class CLI
      selected_driver = Driver.find_by_number(input)
     puts "Loading profile for #{selected_driver.name}..."
     if selected_driver.profile == {}
-      puts "Empty profile now scraping"
-      Scraper.new(selected_driver.name).get_driver_profile
+      selected_driver.profile = Scraper.new(selected_driver.name).get_driver_profile
     end #of conditional
-    
     puts selected_driver.profile
-  
- end #of get_driver_profile
+    user_post_profile_input
+  end #of get_driver_profile
    
-    
+    def self.user_post_profile_input
+      puts "\n1. Return to driver_list \n2. Quit"
+      input = gets.chomp.to_i
+      if input == 1 
+        get_driver_list
+      elsif input == 2 
+        puts "Thanks for using F1 Competitors!"
+      else
+        puts "\nInvalid input, 1 or 2 please! "
+        user_post_profile_input
+      end # of conditional
+    end # of user_post_profile_input
 
   
    
@@ -64,7 +73,6 @@ class CLI
    def driver_list
     puts "Here is a list of drivers:"
     puts Driver.all
-    
    end
 
 end # of class
