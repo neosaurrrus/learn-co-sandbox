@@ -4,8 +4,6 @@ attr_accessor :name, :number, :profile
 
 @@all = []
 
-
-
   def initialize(name)
     @name = name
     @profile = {}

@@ -2,22 +2,26 @@ class CLI
   
 
   def self.welcome
-    puts "Welcome to F1 Competitors"
-    puts "-------------------------"
-    puts "This is a gem that lets you check out the people competing for the Formula One world championship"
-    puts ""
+    puts "\nWelcome to...\n".blue.bold
+
+    puts" _    _              /'_'_/.-''/                             _______".red
+    puts" \\`../ |o_..__      / /__   / /  -= COMPETITORS =-          _\\=.o.=/_".red
+    puts"`.,(_)______(_).>  / ___/  / /                             |_|_____|_|".red
+    puts"~~~~~~~~~~~~~~~~~~".green + "/_/".red + "~~~~~".green + "/_/".red + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~jrei~~".green
+    puts "\nThis is a gem that lets you check out the people competing for the Formula One world championship!".light_blue.bold
+
+
     get_driver_list
   end # of welcome
   
    
    def self.get_driver_list
-       
       if Driver.all.length == 0
          Scraper.new("https://www.formula1.com").get_driver_list
       end
-    puts "Here is a list of drivers:"
+    puts "\nHere is a list of drivers competing this year:\n".light_blue
      Driver.all.each { |driver| 
-      puts "#{driver.number}. #{driver.name}"
+      puts "#{driver.number.to_s.blue}. #{driver.name}"
     }
     user_driver_input
    end
@@ -26,17 +30,17 @@ class CLI
    def self.user_driver_input
     puts ""
     puts "Please enter a number between 1-#{Driver.all.length}:"
-    input = gets.chomp.to_i
+    input = gets.chomp
     if check_driver_input(input)
-      get_driver_profile(input)
+      get_driver_profile(input.to_i)
     else
-      puts "Invalid Selection"
+      puts "Invalid Selection. Please choose between 1 and #{Driver.all.length}".red
       user_driver_input
     end
   end
    
   def self.check_driver_input(input)
-    if input >= 0 && input <= Driver.all.length
+    if input.to_i >= 0 && input.to_i <= Driver.all.length  && numeric?(input)
       true
     else
       false
@@ -45,18 +49,21 @@ class CLI
     
    def self.get_driver_profile(input)
      selected_driver = Driver.find_by_number(input)
-    puts "Loading profile for #{selected_driver.name}..."
+    variable_underline(selected_driver.name.length+8)
+    puts "#{selected_driver.name} Profile".blue.bold
+    variable_underline(selected_driver.name.length+8)
     if selected_driver.profile == {}
       selected_driver.profile = Scraper.new(selected_driver.name).get_driver_profile
     end #of conditional
     selected_driver.profile.each{ |key, value|
-      puts "#{key}: #{value}"
+      puts "#{key.blue}: #{value}"
     }
+    variable_underline(selected_driver.name.length+8)
     user_post_profile_input
   end #of get_driver_profile
    
     def self.user_post_profile_input
-      puts "\n1. Return to driver_list \n2. Quit"
+      puts "\n1.".light_blue + "Return to driver_list" + "\n2.".light_blue + "Quit"
       input = gets.chomp.to_i
       if input == 1 
         get_driver_list
@@ -68,12 +75,18 @@ class CLI
       end # of conditional
     end # of user_post_profile_input
 
+  def self.variable_underline(line_length)
+    line = ""
+    line_length.times do
+      line += "-"
+    end
+    puts line.yellow.bold
+  end
   
-  
-   def driver_list
-    puts "Here is a list of drivers:"
-    puts Driver.all
-   end
+
+  def self.numeric?(input)
+      Float(input) != nil rescue false
+    end
 
 end # of class
 
