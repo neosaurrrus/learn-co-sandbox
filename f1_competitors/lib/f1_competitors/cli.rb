@@ -11,11 +11,11 @@ class CLI
     puts "\nThis is a gem that lets you check out the people competing for the Formula One world championship!".light_blue.bold
 
 
-    get_driver_list
+    view_driver_list
   end # of welcome
   
    
-   def self.get_driver_list
+   def self.view_driver_list
       if Driver.all.length == 0
          Scraper.new("https://www.formula1.com").get_driver_list
       end
@@ -48,7 +48,7 @@ class CLI
   end #of check_driver_input
     
    def self.get_driver_profile(input)
-     selected_driver = Driver.find_by_number(input)
+    selected_driver = Driver.find_by_number(input)
     variable_underline(selected_driver.name.length+8)
     puts "#{selected_driver.name} Profile".blue.bold
     variable_underline(selected_driver.name.length+8)
@@ -66,7 +66,7 @@ class CLI
       puts "\n1.".light_blue + "Return to driver_list" + "\n2.".light_blue + "Quit"
       input = gets.chomp.to_i
       if input == 1 
-        get_driver_list
+        view_driver_list
       elsif input == 2 
         puts "Thanks for using F1 Competitors!"
       else
