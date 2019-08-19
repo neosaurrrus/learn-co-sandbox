@@ -7,7 +7,7 @@ class CLI
     puts" _    _              /'_'_/.-''/                             _______".red
     puts" \\`../ |o_..__      / /__   / /  -= COMPETITORS =-          _\\=.o.=/_".red
     puts"`.,(_)______(_).>  / ___/  / /                             |_|_____|_|".red
-    puts"~~~~~~~~~~~~~~~~~~".green + "/_/".red + "~~~~~".green + "/_/".red + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~jrei~~".green
+    puts"~~~~~~~~~~~~~~~~~~".green + "/_/".red + "~~~~~".green + "/_/".red + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
     puts "\nThis is a gem that lets you check out the people competing for the Formula One world championship!".light_blue.bold
 
 
