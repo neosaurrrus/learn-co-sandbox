@@ -1,7 +1,6 @@
 class Scraper # This scrapes data from the f1 webpage.
 
 
-  
   def initialize(driver = nil)
     @url = "https://www.formula1.com"
     @driver_url = "https://www.formula1.com/en/drivers/"
@@ -9,7 +8,7 @@ class Scraper # This scrapes data from the f1 webpage.
   end  
   
   def get_driver_list
-     @page = Nokogiri::HTML(open(@url))
+     @page =  Nokogiri::HTML(open(@url))
      @page.css(".driver").each { |driver|
      Driver.new(driver.text.split(" ").join(" "))
      }

@@ -3,11 +3,3 @@ require_relative "../lib/environment"
 
 
 CLI.welcome
-
-driver_list = Scraper.new("https://www.formula1.com").get_driver_list
-
-puts driver_list
-#CLI.welcome
-
-
-

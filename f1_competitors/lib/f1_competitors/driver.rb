@@ -1,4 +1,4 @@
-class Driver # This returns dummy data for testing the CLI without actually scraping anything
+class Driver
 
 attr_accessor :name, :number, :profile
 
